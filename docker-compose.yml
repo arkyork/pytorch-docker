@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  pytorch-docker:
+    build: .
+    container_name: python-nvidia
+    volumes:
+      - ./app:/app
+    working_dir: /app
+    deploy:
+      resources:
+          reservations:
+              devices:
+                  - driver: nvidia
+                    count: 1
+                    capabilities: [gpu]
